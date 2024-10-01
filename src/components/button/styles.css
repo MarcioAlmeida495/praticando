@@ -1,0 +1,11 @@
+.buttonS1{
+    padding: 20px;
+    cursor: pointer;
+    border: 0px;
+    background-color: aqua;
+    color: black;
+    text-decoration: bold;
+}
+.buttonS1:hover{
+    background-color: antiquewhite;
+}
