@@ -1,33 +1,31 @@
-import { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css'
-import Button from './components/button/Button';
+//import Button from './components/button/Button';
+
+const Button = React.memo(({incrementCounter, text}) => {
+  console.log('filho Renderizou');
+  return <button type='button' onClick={() => {incrementCounter(20)}}>{text}</button>
+})
 
 function App () {
   const [counter, setCounter] = useState(0);
- 
-  const incrementCounter = (value) => {
-    console.log(counter)
-    setCounter((teste) => {
-      console.log(teste);
-      return counter + value;
-    });
-  }
+  console.log('pai Renderizou');
 
-  useEffect((x)=>{
-    setTimeout(() => {
-      console.log(x);
-      console.log(counter)
-      
-    }, 500);
-  },[counter]);
-
+  const incrementButton = useCallback((num) => {
+    console.log('testando pra ver se mudou');
+    setCounter((c) => c + num);
+  }, []);
   
+  useEffect(()=>{
+    
+    console.log('so pra parar de encher o saco');
+  },[]);
   return (
     <div className='App'>
       <h1>Hello</h1>
       <h2>{counter}</h2>
       
-      <Button text="ClickHere" onClick={incrementCounter}>Increment</Button>
+      <Button text="Incremente" incrementCounter={incrementButton} />
     </div>
   )
 }
